@@ -1,4 +1,4 @@
-const BASE_URL = 'https://contact.mediusware.com/api-doc/?format=openapi';
+const BASE_URL = `'https://contact.mediusware.com/api/contacts/?format=json&page=1'`;
 
 export const fetchData = async (path) => {
   try {
@@ -10,4 +10,3 @@ export const fetchData = async (path) => {
     throw error;
   }
 };
-
