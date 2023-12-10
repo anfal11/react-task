@@ -54,10 +54,10 @@ const Problem2 = () => {
   
     return (
       <div className="App text-center">
-        <Button variant="primary" onClick={() => openModal('A')}>
+        <Button className="me-3" variant="primary" onClick={() => openModal('A')}>
           All Contact
         </Button>
-        <Button variant="warning" onClick={() => openModal('B')}>
+        <Button className="me-3" variant="warning" onClick={() => openModal('B')}>
           US Contact
         </Button>
   
@@ -67,13 +67,13 @@ const Problem2 = () => {
             <Modal.Title>Modal A</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Button variant="primary" onClick={() => openModal('A')}>
+            <Button className="me-3" variant="primary" onClick={() => openModal('A')}>
               All Contacts
             </Button>
-            <Button variant="warning" onClick={() => openModal('B')}>
+            <Button className="me-3" variant="warning" onClick={() => openModal('B')}>
               US Contacts
             </Button>
-            <Button variant="primary" onClick={closeModal}>
+            <Button className="me-3" variant="primary" onClick={closeModal}>
               Close
             </Button>
             <Form.Check
@@ -103,13 +103,13 @@ const Problem2 = () => {
             <Modal.Title>Modal B</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Button variant="primary" onClick={() => openModal('A')}>
+            <Button className="me-3" variant="primary" onClick={() => openModal('A')}>
               All Contacts
             </Button>
-            <Button variant="warning" onClick={() => openModal('B')}>
+            <Button className="me-3" variant="warning" onClick={() => openModal('B')}>
               US Contacts
             </Button>
-            <Button variant="warning" onClick={closeModal}>
+            <Button className="me-3" variant="warning" onClick={closeModal}>
               Close
             </Button>
             <Form.Check
