@@ -1,12 +1,57 @@
 import React, {useState} from 'react';
+import { useEffect } from 'react';
 
 const Problem1 = () => {
 
+    const [inputData, setInputData] = useState([]);
     const [show, setShow] = useState('all');
 
     const handleClick = (val) =>{
         setShow(val);
-    }
+
+        const data = JSON.parse(localStorage.getItem('names'));
+        const table = document.querySelector('tbody');
+        table.innerHTML = '';
+
+        let sortedData;
+        if (val === 'all') {
+            sortedData = data?.sort((a, b) => {
+                if (a.status === 'active') return -1;
+                if (a.status === 'completed' && b.status !== 'active') return -1;
+                return 0;
+            });
+        } else {
+            sortedData = data?.filter(item => item.status === val);
+        }
+        sortedData?.map((item, index) => {
+            table.innerHTML += `
+                <tr key=${index}>
+                    <th scope="row">${item?.name}</th>
+                    <td>${item?.status}</td>
+                </tr>
+            `;
+        });
+    };
+    
+    useEffect(() => {
+
+        localStorage.setItem('names', JSON.stringify(inputData));
+        const data = JSON.parse(localStorage.getItem('names'));
+        console.log(data);
+
+      }, [inputData]);
+
+      const handleSubmit = (e) =>{
+        e.preventDefault();
+        const name = e.target.name.value;
+        const status = e.target.status.value.toLowerCase();
+        setInputData([...inputData, {name, status}]);
+        e.target.reset();
+      }
+
+
+
+      
 
     return (
 
@@ -14,12 +59,12 @@ const Problem1 = () => {
             <div className="row justify-content-center mt-5">
                 <h4 className='text-center text-uppercase mb-5'>Problem-1</h4>
                 <div className="col-6 ">
-                    <form className="row gy-2 gx-3 align-items-center mb-4">
+                    <form onSubmit={handleSubmit} className="row gy-2 gx-3 align-items-center mb-4">
                         <div className="col-auto">
-                            <input type="text" className="form-control" placeholder="Name"/>
+                            <input type="text" name='name' className="form-control" placeholder="Name"/>
                         </div>
                         <div className="col-auto">
-                            <input type="text" className="form-control" placeholder="Status"/>
+                            <input type="text" name='status' className="form-control" placeholder="Status"/>
                         </div>
                         <div className="col-auto">
                             <button type="submit" className="btn btn-primary">Submit</button>
@@ -47,7 +92,14 @@ const Problem1 = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        
+                            {
+                                inputData?.map((item, index) => (
+                                    <tr>
+                                        <th scope="row">{item?.name}</th>
+                                        <td>{item?.status}</td>
+                                    </tr>
+                                ) ) 
+                            }
                         </tbody>
                     </table>
                 </div>
