@@ -1,66 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 
 const Problem2 = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   return (
-    <div className="container">
-
-
-      <div className="row justify-content-center mt-5">
+    <Container>
+      <Row className="justify-content-center mt-5">
         <h4 className="text-center text-uppercase mb-5">Problem-2</h4>
 
-                         {/* modal */}
-                         <div
-            className="modal fade"
-            id="staticBackdrop"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                    Modal title
-                  </h1>
-                </div>
-                <div className="modal-body">Data show</div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Understood
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Modal */}
+        <Modal show={showModal} onHide={handleClose} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title className="fs-5">Modal title</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Data show</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary">Understood</Button>
+          </Modal.Footer>
+        </Modal>
 
         <div className="d-flex justify-content-center gap-3">
-        
-          <button
-            className="btn btn-lg btn-outline-primary"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
+          <Button
+            className="btn-lg btn-outline-primary"
+            onClick={handleShow}
           >
             All Contacts
-          </button>
- 
-          <button className="btn btn-lg btn-outline-warning" type="button">
+          </Button>
+
+          <Button className="btn-lg btn-outline-warning" type="button">
             US Contacts
-          </button>
-          
+          </Button>
         </div>
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
